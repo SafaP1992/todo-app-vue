@@ -9,13 +9,14 @@
       </h1>
       <div class="tasks__new input-group">
         <input type="text"
-               class="input-group-field"
-               v-model="newTask"
-               @keyup.enter="addTask"
-               placeholder="New task"
+            v-model="todotitle"
+            class="input-group-field"
+            placeholder="New task"
+            spellcheck="off"
+            @keypress.enter="AddToDo"
         >
         <span class="input-group-button">
-          <button @click="addTask" 
+          <button @click="AddToDo" 
                   class="button"
           >
             <i class="fa fa-plus"></i> Add
@@ -50,7 +51,17 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      todotitle: ""
+    };
+  },
+  methods: {
+    AddToDo(){
+      this.$emit("AddNewToDo", this.todotitle);
+      this.todotitle = "";
+    }
+  }
 }
 </script>
 

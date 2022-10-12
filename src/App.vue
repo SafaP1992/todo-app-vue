@@ -5,19 +5,31 @@
     <main>
         <div class="container">
 
-          <add-to-do></add-to-do>
 
+          <add-to-do v-on:AddNewToDo="AddToDo"></add-to-do>
+
+            <div class="btn-delete-all">
+                <button>Delete All</button>
+            </div>
             <section>
                 <ul class="todo">
-                    <to-do v-for="(item, index) in todos" :key="index" :todo="item"></to-do>
+                    <to-do 
+                        v-for="item in todos" 
+                        :key="item.id" 
+                        :todo="item" 
+                        @Deleted="DeletedTodo"
+                        @changeStatus="changeTodoStaus"    
+                    ></to-do>
                 </ul>
             </section>
 
         </div>
     </main>
 
-    <app-footer></app-footer>
-    
+    <div class="container">
+        <app-footer></app-footer>
+    </div>
+        
 </template>
 
 <script>
@@ -37,10 +49,26 @@ export default {
   data() {
     return {
         todos: [
-            { title: "Tutorial PHP", isComplete: false},
-            { title: "Tutorial React", isComplete: true},
-            { title: "Tutorial Vue JS", isComplete: false}
+            
         ]
+    }
+  },
+  methods: {
+    AddToDo(title) {
+        const id = Math.random().toString(16).slice();
+        const todo = { id, title, isComplete: false};
+        this.todos.push(todo)
+    },
+    DeletedTodo(id){
+        this.todos = this.todos.filter((f) => f.id !== id)
+    },
+    changeTodoStaus(id, newStatus){
+        // console.log(id);
+        // console.log(newStatus);
+        var newTodos = [...this.todos];
+        var selectedTodo = newTodos.find((f) => f.id === id);
+        selectedTodo.isComplete = newStatus;
+        this.todos = newTodos;
     }
   },
 }
@@ -58,5 +86,13 @@ export default {
 
 .todo {
     margin: 5px;
+}
+
+.btn-delete-all {
+    text-align: right;
+}
+.btn-delete-all button{
+    text-align: center;
+    padding: 8px;
 }
 </style>

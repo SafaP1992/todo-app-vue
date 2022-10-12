@@ -1,6 +1,5 @@
 <template>
     <footer>
-
     </footer>
 </template>
 
@@ -11,5 +10,4 @@ export default {
 </script>
 
 <style>
-
 </style>
