@@ -1,6 +1,5 @@
 <template>
   <li class="card" draggable="true">
-    <span class="num">{{todo.id }}</span>
     <div class="cb-container">
         <input 
             type="checkbox" 
@@ -10,9 +9,12 @@
         />
         <span class="check"></span>
     </div>
-    <p class="item">{{todo.title}}</p>
+    <p class="item">
+        <del v-if="todo.isComplete==true">{{todo.title}}</del>
+        <span v-else v-text="todo.title"></span>
+    </p>
     <!-- <p class="item"><span v-text="todo.title"></span></p> -->
-    <button @click="deleteToDo" class="clear">Clear it</button>
+    <button @click="deleteToDo" class="clear">X</button>
   </li>
 </template>
 
