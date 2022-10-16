@@ -15,12 +15,12 @@
 }
 
 html {
-    direction: rtl;
+    /* direction: rtl; */
 }
 
 body {
     background: #F1F5F9;
-    text-align: right;
+    text-align: left;
 }
 
 a {
@@ -141,7 +141,8 @@ nav {
 
 /*------------------------------------------- main -------------------------------------------*/
 .container {
-    padding: 19px 17% 20px 2%;
+    /* padding: 19px 17% 20px 2%; */
+    padding: 19px 2% 20px 17%;
 }
 
 .large-container {

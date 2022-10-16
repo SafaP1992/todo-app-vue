@@ -5,6 +5,6 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
 createApp(App)
     .use(VueToast, {
-        position: 'bottom-right'
+        position: 'top-right'
     })
     .mount('#app')
